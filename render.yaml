@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: chatify-backend
+    env: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      # Set this to your Vercel frontend URL(s). Comma-separated supported.
+      - key: CLIENT_URLS
+        value: https://your-frontend.vercel.app
+      # Required for cross-site cookies (Vercel -> Render).
+      - key: COOKIE_SAMESITE
+        value: none
+      - key: COOKIE_SECURE
+        value: "true"
+      - key: TRUST_PROXY
+        value: "1"
